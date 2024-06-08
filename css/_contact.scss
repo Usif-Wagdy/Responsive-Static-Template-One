@@ -1,0 +1,49 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+/* Start Contact */
+.contact {
+  @include sec-gap;
+  .container {
+    @include sec-heading;
+    .info {
+      text-align: center;
+      margin-top: $section_gap;
+      p {
+        &:not(.social > p) {
+          @include font-style($secondary_color, 2em, null, 800, -2px);
+          @include break-point("mobile") {
+            font-size: 1.3em;
+          }
+        }
+      }
+      a {
+        display: block;
+        @include font-style($main_color, 2em, null, 800);
+        @include break-point("mobile") {
+          font-size: 1.3em;
+        }
+      }
+      .social {
+        @include flex-box("icon", 1) {
+          display: flex;
+          gap: $text_gap;
+        }
+        justify-content: center;
+        gap: $text_gap;
+        p {
+          @include font-style(
+            $normal_text_color,
+            $small_text_size,
+            null,
+            null,
+            1px
+          );
+          @include break-point("mobile") {
+            font-size: $x-small_text_size;
+          }
+        }
+      }
+    }
+  }
+}
+/* End Contact */

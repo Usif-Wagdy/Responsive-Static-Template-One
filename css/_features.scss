@@ -1,0 +1,24 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+/* Start Features */
+.features {
+  background-color: $bg_color;
+  @include sec-gap;
+  @include flex-box("feat", 1) {
+    .icon {
+      color: $main_color;
+      margin-bottom: $content_gap;
+    }
+    h3 {
+      @include font-style($secondary_color, null, null, 900);
+    }
+    p {
+      @include font-style(
+        $normal_text_color,
+        $small_text_size,
+        $small_text_height
+      );
+    }
+  }
+}
+/* End Features */

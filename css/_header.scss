@@ -1,0 +1,55 @@
+@use "./variables" as *;
+
+/*Start Header*/
+header {
+  padding: $screen_padding;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+      width: 70px;
+    }
+    .links {
+      position: relative;
+      i {
+        font-size: 25px;
+      }
+      ul {
+        min-width: 200px;
+        background-color: $bg_color;
+        position: absolute;
+        top: calc(100% + 15px);
+        right: 0;
+        z-index: 1;
+        display: none;
+        li {
+          &:not(:last-child) {
+            border-bottom: 1px solid #ddd;
+          }
+          a {
+            display: block;
+            color: $secondary_color;
+            padding: $text_gap;
+            transition: $main_transition;
+            &:hover {
+              padding-left: $screen_padding + 10px;
+            }
+          }
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          border: $border_width solid transparent;
+          top: -$border_width * 2;
+          right: 0;
+          border-bottom-color: $bg_color;
+        }
+      }
+      &:hover ul {
+        display: block;
+      }
+    }
+  }
+}
+/*End Header*/

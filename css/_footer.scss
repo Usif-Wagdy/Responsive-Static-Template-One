@@ -1,0 +1,18 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+/* Start Footer */
+footer {
+  background-color: $secondary_color;
+  text-align: center;
+  padding: calc($section_gap / 2) $screen_padding;
+  font-size: $normal_text_size;
+  color: white;
+  @include break-point("mobile") {
+    font-size: $small_text_size;
+  }
+  span {
+    color: $main_color;
+    font-weight: 800;
+  }
+}
+/* End Footer */

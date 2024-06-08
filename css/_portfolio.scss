@@ -1,0 +1,52 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+/* Start Portfolio */
+.portfolio {
+  @include sec-gap;
+  @include sec-heading;
+  background-color: $bg_color;
+  .portfolio-content {
+    margin-top: $section_gap;
+    @include flex-box("card", 1) {
+      text-align: left;
+      max-width: 500px;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 0 10px 5px #eee;
+      img {
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      h3 {
+        @include font-style(
+          $secondary_color,
+          $normal_text_size,
+          null,
+          800,
+          null
+        );
+        padding: {
+          top: $screen_padding;
+          left: $screen_padding;
+          right: $screen_padding;
+        }
+      }
+      p {
+        @include font-style(
+          $normal_text_color,
+          17px,
+          $x_small_text_height,
+          null,
+          null
+        );
+        padding: {
+          left: $screen_padding;
+          right: $screen_padding;
+          bottom: $screen_padding;
+        }
+      }
+    }
+  }
+}
+/* End Portfolio */

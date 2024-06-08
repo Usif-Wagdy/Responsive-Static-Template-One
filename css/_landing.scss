@@ -1,0 +1,33 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+/*Start Landing*/
+.landing {
+  position: relative;
+  height: calc(100vh - 68px);
+  background-image: url(../imgs/landing.jpg);
+  background-size: cover;
+  .intro-text {
+    @include center {
+      text-align: center;
+      width: 400px;
+    }
+    h1 {
+      @include font-style(
+        $main_color,
+        $heading_text_size,
+        $heading_text_height,
+        $heading_weight,
+        -1px
+      );
+    }
+    p {
+      @include font-style(
+        $normal_text_color,
+        $normal_text_size,
+        $normal_text_height
+      );
+    }
+  }
+}
+/*End Landing*/

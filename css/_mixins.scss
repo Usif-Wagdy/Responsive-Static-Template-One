@@ -1,0 +1,136 @@
+@use "./variables" as *;
+/// responsive media queries
+@mixin break-point($screen) {
+  @if $screen == "mobile" {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $screen == "small" {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $screen == "medium" {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $screen == "large" {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+@mixin custom-break-point($screen) {
+  @if $screen == "mobile" {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $screen == "small" {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $screen == "medium" {
+    @media (min-width: 992px) and (max-width: 1199px) {
+      @content;
+    }
+  } @else if $screen == "large" {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else if $screen == "small to large" {
+    @media (max-width: 1199px) {
+      @content;
+    }
+  }
+}
+/// centering an absolute element
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  @content;
+}
+/// text styling
+@mixin font-style(
+  $color: unset,
+  $size: inherit,
+  $height: normal,
+  $weight: normal,
+  $spacing: normal
+) {
+  color: $color;
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+  letter-spacing: $spacing;
+  margin: 0;
+  padding: 0;
+  @if $color == $main_color or $color == $secondary_color {
+    margin-bottom: $text_gap;
+  }
+  @if $size == $heading_text_size {
+    text-transform: capitalize;
+  }
+}
+/// applying a responsive flexbox and creating it's child
+@mixin flex-box($class_name, $num_of_rows) {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  @if $num_of_rows == 1 {
+    gap: $content_gap * 2;
+  } @else {
+    gap: $content_gap;
+  }
+  .#{$class_name} {
+    @if $num_of_rows == 1 {
+      text-align: center;
+      max-width: 400px;
+    }
+    @content;
+  }
+}
+/// applying a responsive grid box and creating it's child
+@mixin grid-box($class_name) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $content_gap;
+  .#{$class_name} {
+    @content;
+  }
+}
+/// section gap top and bottom
+@mixin sec-gap {
+  padding-top: $section_gap;
+  padding-bottom: $section_gap;
+}
+/// section name heading style
+@mixin sec-heading {
+  h2 {
+    @include font-style(
+      $section_headings_color,
+      $section_heading_size,
+      null,
+      $heading_weight,
+      -5px
+    );
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    & + p {
+      @include font-style($section_p_color, $normal_text_size);
+      text-align: center;
+      margin-top: -35px;
+    }
+  }
+  @include break-point("mobile") {
+    h2 {
+      font-size: calc($section_heading_size - 30px);
+      & + p {
+        font-size: $x-small_text_size;
+        margin-top: -28px;
+      }
+    }
+  }
+}
